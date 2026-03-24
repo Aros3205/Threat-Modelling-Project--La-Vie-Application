@@ -140,8 +140,8 @@ The STRIDE model was used to classify threats:
 
 ## 📄 Reports
 
-- [OWASP Threat Model Report](reports/owasp-report.pdf)
-- [MTMT Threat Model Report](reports/mtmt-report.pdf)
+- ![OWASP Threat Model Report](reports/owasp-report.pdf)
+- ![MTMT Threat Model Report](reports/mtmt-report.pdf)
 
 ---
 
@@ -168,7 +168,7 @@ It highlights the importance of integrating security early in the software devel
 
 ## 👤 Author
 
-**[Your Name]**  
+**[Tolulope R Arowobusoye]**  
 Cybersecurity Enthusiast | Threat Modeling | Application Security  
 
 ---
