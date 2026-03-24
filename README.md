@@ -1,9 +1,9 @@
-# Threat-Modelling-Project-La-Vie-Application
+# Threat-Modelling-Project-La Vié-Application
 
 
 
 ## 📌 Overview
-This project demonstrates a complete threat modelling exercise performed on a web-based application (**La Vie App**) using two industry-recognized tools:
+This project demonstrates a complete threat modelling exercise performed on a web-based application (**La Vié App**) using two industry-recognized tools:
 
 - Microsoft Threat Modeling Tool (MTMT)
 - OWASP Threat Dragon
@@ -13,6 +13,23 @@ The goal was to identify potential security threats, categorize them using the S
 ---
 
 ## 🏗️ System Architecture (DFD)
+
+
+### All Users (External Entity)
+
+
+In this project:
+
+The **All Users** entity represents any individual interacting with the application from outside the system boundary. This includes both authorized and unauthorized users attempting to access the application.
+
+All Users initiate HTTP requests to the system and receive responses from the backend. This entity is critical in threat modeling because it represents the primary entry point for potential attacks such as spoofing, injection, and unauthorized access.
+
+
+- Authorized users send legitimate requests and receive valid responses.
+- Unauthorized users may attempt malicious actions such as SQL injection, spoofing, or excessive requests.
+
+This entity lies outside the trust boundary, making all incoming data from this source untrusted and requiring validation and security controls.
+
 
 The application consists of:
 
@@ -52,88 +69,115 @@ The STRIDE model was used to classify threats:
 
 ## 🔍 Identified Threats
 
-### 1. SQL Injection (Tampering)
-- **Description:**  
-  An attacker may manipulate SQL queries through unsanitized user input, leading to unauthorized data access or modification.
+### 1. Spoofing
+Attackers may impersonate legitimate users to gain unauthorized access.
 
-- **Mitigation:**  
-  - Use parameterized queries  
-  - Implement input validation  
-  - Use ORM frameworks  
-
----
-
-### 2. User Identity Spoofing (Spoofing)
-- **Description:**  
-  An attacker may impersonate a legitimate user to gain unauthorized access to system resources.
-
-- **Mitigation:**  
-  - Implement Multi-Factor Authentication (MFA)  
-  - Use secure session management  
-  - Enforce strong authentication mechanisms  
+**Mitigation:**
+- Implement strong authentication (e.g., MFA)
+- Use secure session management
+- Enforce identity verification mechanisms
 
 ---
 
-### 3. Sensitive Data Exposure (Information Disclosure)
-- **Description:**  
-  Data transmitted over insecure channels may be intercepted by attackers.
+### 2. Tampering
+Data may be altered during transmission or through malicious input (e.g., SQL injection).
 
-- **Mitigation:**  
-  - Use HTTPS (TLS encryption)  
-  - Encrypt sensitive data in transit and at rest  
+**Mitigation:**
+- Use input validation and sanitization
+- Implement parameterized queries
+- Use HTTPS to protect data in transit
 
 ---
 
-### 4. Denial of Service (DoS)
-- **Description:**  
-  Attackers may overload the backend server, causing service disruption.
+### 3. Repudiation
+Users may deny performing certain actions due to lack of proper logging.
 
-- **Mitigation:**  
-  - Rate limiting  
-  - Load balancing  
-  - Traffic filtering  
+**Mitigation:**
+- Enable logging and monitoring
+- Maintain audit trails
+- Use timestamps and user activity tracking
 
+---
+
+### 4. Information Disclosure
+Sensitive data may be exposed to unauthorized users.
+
+**Mitigation:**
+- Encrypt data in transit (HTTPS)
+- Use proper access controls
+- Avoid exposing sensitive data in responses
+
+---
+
+### 5. Denial of Service (DoS)
+Attackers may overwhelm the system with excessive requests.
+
+**Mitigation:**
+- Implement rate limiting
+- Use load balancing
+- Monitor traffic and apply throttling
+
+---
+
+### 6. Elevation of Privilege
+Attackers may gain higher-level permissions than intended.
+
+**Mitigation:**
+- Enforce role-based access control (RBAC)
+- Apply the principle of least privilege
+- Regularly audit permissions and system access
 ---
 
 ## 📊 Outputs
 
-### 📌 OWASP Threat Dragon
-- DFD Diagram
-- Threat analysis (SQL Injection, Spoofing)
-- Exported Threat Model Report (PDF)
-
-### 📌 Microsoft Threat Modeling Tool
-- Auto-generated threats
-- Threat filtering and prioritization
-- Threat summary and detailed analysis
-
----
 
 
-## 📸 Screenshots
 
 ### 🔹 OWASP Threat Dragon
 
+
 #### System Diagram
+
+
 ![OWASP Diagram](screenshots/owasp-diagram.png)
 
+
+
 #### SQL Injection Threat
+
+
 ![OWASP SQL Injection](screenshots/owasp-sql-injection.png)
 
+
+
 #### Spoofing Threat
+
+
 ![OWASP Spoofing](screenshots/owasp-spoofing.png)
 
 ---
 
 ### 🔹 Microsoft Threat Modeling Tool (MTMT)
 
+
+
 #### System Diagram
+
+
 ![MTMT Diagram](screenshots/mtmt-diagram.png)
 
+
+
 #### Threat Summary
+
+
 ![MTMT Threat Summary](screenshots/mtmt-threat-summary.png)
 
+
+
 #### SQL Injection Threat
+
+
 ![MTMT SQL Injection](screenshots/mtmt-sql-injection.png) 
 
 
@@ -162,7 +206,9 @@ This project demonstrates practical experience in:
 - Secure system design  
 - Risk identification and mitigation  
 
-It highlights the importance of integrating security early in the software development lifecycle (SDLC).
+This threat modeling exercise applies the STRIDE methodology to systematically identify and analyze potential security risks within the La Vie Application. By examining data flows, trust boundaries, and system interactions, key threats across all STRIDE categories were identified, including spoofing, tampering, repudiation, information disclosure, denial of service, and elevation of privilege.
+
+Each identified threat is paired with practical mitigation strategies to reduce risk and improve the overall security posture of the system. This approach ensures a structured and comprehensive evaluation of potential vulnerabilities, aligning with industry best practices for secure system design.
 
 ---
 
